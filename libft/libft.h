@@ -6,7 +6,7 @@
 /*   By: penlam <penlam@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 15:36:51 by penlam            #+#    #+#             */
-/*   Updated: 2025/11/05 17:56:20 by penlam           ###   ########.fr       */
+/*   Updated: 2025/11/05 20:52:49 by penlam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define LIBFT_H
 
 # include <stddef.h>
+# include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 int		ft_strlen(char *str);
 int		ft_isalpha(int c);
