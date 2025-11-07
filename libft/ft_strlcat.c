@@ -6,13 +6,13 @@
 /*   By: penlam <penlam@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 14:31:07 by penlam            #+#    #+#             */
-/*   Updated: 2025/11/01 19:42:59 by penlam           ###   ########.fr       */
+/*   Updated: 2025/11/07 10:03:01 by penlam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <bsd/string.h>
-
+#include <stdio.h>
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	d_len;
@@ -21,11 +21,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 
 	i = 0;
 
-	// 1. & 2.
-	s_len = ft_strlen(src);
-	d_len = ft_strlen(dst);
-	printf("dest length: %zu\n", d_len);
-	printf("source length: %zu\n", d_len);
+	s_len = strlen(src);
+	d_len = strlen(dst);
 	// 3. overflow check
 	if (d_len >= size)
 	{
