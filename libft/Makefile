@@ -1,10 +1,22 @@
 NAME = libft.a
 AR = ar
-
 CC := cc
 CFLAGS := -Wall -Werror -Wextra
 ARFLAGS := rcs
-SRC := ft_strlcpy.c ft_strlen.c ft_isalpha.c ft_strlen.c ft_isdigit.c
+SRC := ft_atoi.c \
+ft_bzero.c \
+ft_isalnum.c \
+ft_strlcpy.c \
+ft_isalpha.c \
+ft_strlen.c \
+ft_isdigit.c \
+ft_isascii.c \
+ft_isprint.c \
+ft_memcpy.c \
+ft_memset.c \
+ft_tolower.c \
+ft_toupper.c \
+
 OBJFILES := $(SRC:.c=.o)
 
 .PHONY: clean
@@ -18,10 +30,10 @@ $(NAME): $(OBJFILES)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(NAME)
+	rm -f $(OBJFILES)
 
 fclean: clean
-	rm -f $(OBJFILES)
+	rm -f $(NAME)
 
 re: fclean all
 
