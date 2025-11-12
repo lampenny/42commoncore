@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: penlam <penlam@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/22 11:51:03 by penlam            #+#    #+#             */
-/*   Updated: 2025/10/26 15:28:30 by penlam           ###   ########.fr       */
+/*   Created: 2025/11/05 17:53:29 by penlam            #+#    #+#             */
+/*   Updated: 2025/11/05 17:58:44 by penlam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+#include "libft.h"
+// finds the first occurrence of a character in a string
+char	*ft_strchr(const char *s, int c)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (s[i] != '\0')
+	{
+		//checks everything before the null terminator
+		if (s[i] == (unsigned char)c)
+			return ((char *)&s[i]);
 		i++;
-	return (i);
+	}
+	//Checks only the null terminator itself
+	if (s[i] == (unsigned char)c)
+		return ((char *)&s[i]);
+	return (NULL);
 }

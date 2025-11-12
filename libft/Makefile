@@ -16,6 +16,10 @@ ft_memcpy.c \
 ft_memset.c \
 ft_tolower.c \
 ft_toupper.c \
+ft_strchr.c \
+ft_strrchr.c \
+ft_strlcat.c \
+ft_strncmp.c \
 
 OBJFILES := $(SRC:.c=.o)
 
