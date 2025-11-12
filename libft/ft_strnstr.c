@@ -11,36 +11,30 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <bsd/string.h>
-#include <stdio.h>
+
 char *ft_strnstr(const char *big, const char *little, size_t len)
 {
-// big is the haystack
-// little is the needle
-	int	i;
-	const char *tracker[len];
+	size_t	i;
+	size_t	j;
 
 	i = 0;
-	while (big[i] != '\0' || len > 0)
+	j = 0;
+	if (!*little)
+		return ((char *)big);
+	while (big[i] != '\0' && i < len)
 	{
-		if (big[i] == little[i])
-			// append it to the tracker
-			// tracker[i] = big[i];
-			i++;
-		else 
-			i++;
+		// the second condition: do the characters match AND we haven't gone past the boundary (i + j < len)
+		while (little[j] != '\0' && big[i + j] == little[j] && i + j < len)
+			{
+				j++;
+			}
+		if (little[j] == '\0')
+		{
+			return ((char *)&big[i]);
+		}
+		j = 0;
+		i++;
 	}
+	return (NULL);
 }
 
-int main(){
-const char *largestring = "Foo Bar Baz";
-const char *smallstring = "Bar";
-char *ptr;
-
-ptr = strnstr(largestring, smallstring, 4);
-    if (ptr)
-        printf("Found substring: '%s'\n", ptr);
-    else
-        printf("Substring not found within first 4 characters. %s \n", ptr);
-return (0);
-}

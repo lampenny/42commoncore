@@ -11,16 +11,21 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-
+// finds the first occurrence of a character in a string
 char	*ft_strchr(const char *s, int c)
 {
 	int	i;
 
 	i = 0;
-	while (s[i] != (unsigned char)c && s[i] != '\0')
+	while (s[i] != '\0')
+	{
+		//checks everything before the null terminator
+		if (s[i] == (unsigned char)c)
+			return ((char *)&s[i]);
 		i++;
+	}
+	//Checks only the null terminator itself
 	if (s[i] == (unsigned char)c)
 		return ((char *)&s[i]);
-	else
-		return (NULL);
+	return (NULL);
 }
