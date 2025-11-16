@@ -6,7 +6,7 @@
 /*   By: penlam <penlam@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 14:31:07 by penlam            #+#    #+#             */
-/*   Updated: 2025/11/07 10:03:01 by penlam           ###   ########.fr       */
+/*   Updated: 2025/11/16 16:55:17 by penlam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,10 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	i;
 
 	i = 0;
-
-	s_len = strlen(src);
-	d_len = strlen(dst);
-	// 3. overflow check 
-	// If size is too small, return size + s_len
+	s_len = ft_strlen(src);
+	d_len = ft_strlen(dst);
 	if (d_len >= size)
-		return  (size + s_len);
-
-	// Copy what we can
+		return (size + s_len);
 	while (src[i] != '\0' && (d_len + i) < (size -1))
 	{
 		dst[d_len + i] = src[i];
