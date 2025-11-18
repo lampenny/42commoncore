@@ -13,11 +13,8 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stddef.h>
-# include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdint.h>
 
 int		ft_strlen(char *str);
 int		ft_isalpha(int c);
