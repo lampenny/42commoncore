@@ -26,15 +26,15 @@ void test_strlen(void)
     char *test2 = "";
     char *test3 = "this is a longer string";
     
-    printf("ft_strlen(\"%s\") = %zu, strlen = %zu %s\n", 
+    printf("ft_strlen(\"%s\") = %d, strlen = %d %s\n", 
         test1, ft_strlen(test1), strlen(test1),
         ft_strlen(test1) == strlen(test1) ? "✓" : "✗");
     
-    printf("ft_strlen(\"%s\") = %zu, strlen = %zu %s\n", 
+    printf("ft_strlen(\"%s\") = %d, strlen = %d %s\n", 
         test2, ft_strlen(test2), strlen(test2),
         ft_strlen(test2) == strlen(test2) ? "✓" : "✗");
     
-    printf("ft_strlen(\"%s\") = %zu, strlen = %zu %s\n", 
+    printf("ft_strlen(\"%s\") = %d, strlen = %d %s\n", 
         test3, ft_strlen(test3), strlen(test3),
         ft_strlen(test3) == strlen(test3) ? "✓" : "✗");
 }
