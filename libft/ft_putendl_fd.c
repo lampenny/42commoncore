@@ -7,7 +7,7 @@ void	ft_putendl_fd(char *d, int fd)
 	i = 0;
 	while (d[i])
 	{
-		write(fd, d[i], 1);
+		write(fd, &d[i], 1);
 		i++;
 	}
 	write(fd, "\n", 1);

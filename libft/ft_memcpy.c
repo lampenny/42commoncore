@@ -26,6 +26,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		chdest[i] = chsrc[i];
 		i++;
 	}
+	return (dest);
 }
 /*
 #include <stdio.h>

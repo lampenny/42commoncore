@@ -16,12 +16,19 @@ char	*ft_strdup(const char *s)
 {
 	char	*dst;
 	size_t	len;
+	size_t	i;
 
 	len = ft_strlen(s);
-	*dst = malloc(len + 1);
+	dst = malloc(len + 1);
 	if (dst == NULL)
 		return (NULL);
-	ft_strlcpy(dst, s, len + 1);
+	i = 0;
+	while (s[i])
+	{
+		dst[i] = s[i];
+		i++;
+	}
+	dst[i] = '\0';
 	return (dst);
 }
 /*
