@@ -3,15 +3,33 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
+#include <limits.h>
 
 void print_test(int result, int expected)
 {
 	printf("%s\n", result == expected ? "PASSED" : "FAILED");
 }
 
+void print_test_str(char *result, const char *expected)
+{
+	int passed = (result != NULL && strcmp(result, expected) == 0);
+	if (passed)
+		printf("PASSED \n");
+	else
+	{
+		printf("FAILED \n");
+		printf("Expected: %s \n", expected);
+		printf(" Received: %s \n", expected);
+	}
+	printf("\n");
+
+	if (result)
+		free(result);
+}
+
 void isupper_test(void)
 {
-	printf("\n=== Testing ft_toupper ===\n");
+	printf("\n====== Testing ft_toupper ======\n");
 	int a;
 	a = 'a';
 	printf("Lowercase 'a': ");
@@ -20,7 +38,7 @@ void isupper_test(void)
 
 void isdigit_test(void)
 {
-	printf("\n=== Testing ft_isdigit ===\n");
+	printf("\n====== Testing ft_isdigit ======\n");
 	printf("Digits (expected return 1): \n");
 	printf("'5' %d ", ft_isdigit('5'));
 	print_test(ft_isdigit('5') != 0, 1);
@@ -50,7 +68,7 @@ void isdigit_test(void)
 
 void atoi_test(void)
 {
-	printf("\n=== Testing ft_atoi ===\n");
+	printf("\n====== Testing ft_atoi ======\n");
 	int val;
 
 	val = ft_atoi("1509.10E");
@@ -68,7 +86,7 @@ void atoi_test(void)
 
 void bzero_test()
 {
-	printf("\n=== Testing ft_bzero ===\n");
+	printf("\n====== Testing ft_bzero ======\n");
 	char test_arr[10] = "HELLOHELLO";
 	size_t length = 10;
 
@@ -99,6 +117,7 @@ void calloc_test()
 {
 	char *ptr;
 	size_t len;
+	printf("\n====== Testing ft_calloc ======\n");
 	len = 50;
 	ptr = (char *)ft_calloc(len, sizeof(char));
 
@@ -126,7 +145,7 @@ void calloc_test()
 
 void isalnum_test(void)
 {
-	printf("\n=== Testing ft_isalnum ===\n");
+	printf("\n====== Testing ft_isalnum ======\n");
 	printf("Letter 'a': ");
 	print_test(ft_isalnum('a') != 0, 1);
 	printf("Digit '5': ");
@@ -139,7 +158,7 @@ void isalnum_test(void)
 
 void isalpha_test(void)
 {
-	printf("\n=== Testing ft_isalpha ===\n");
+	printf("\n====== Testing ft_isalpha ======\n");
 	printf("Uppercase 'A': ");
 	print_test(ft_isalpha('A') != 0, 1);
 	printf("Lowercase 'z': ");
@@ -152,7 +171,7 @@ void isalpha_test(void)
 
 void isascii_test(void)
 {
-	printf("\n=== Testing ft_isascii ===\n");
+	printf("\n====== Testing ft_isascii ======\n");
 	printf("Character 'A': ");
 	print_test(ft_isascii('A') != 0, 1);
 	printf("Value 0: ");
@@ -167,7 +186,7 @@ void isascii_test(void)
 
 void isprint_test(void)
 {
-	printf("\n=== Testing ft_isprint ===\n");
+	printf("\n====== Testing ft_isprint ======\n");
 	printf("Space ' ': ");
 	print_test(ft_isprint(' ') != 0, 1);
 	printf("Letter 'A': ");
@@ -182,10 +201,33 @@ void isprint_test(void)
 	print_test(ft_isprint(127), 0);
 }
 
-void	itoa_test()
+void itoa_test()
 {
-	printf("\n=== Testing ft_itoa ===\n");
-	
+	char *result;
+	printf("\n====== Testing ft_itoa ======\n");
+	// Test 1: zero
+	printf("Zero: ");
+	result = ft_itoa(0);
+	print_test_str(result, "0");
+	// Test 2: Positive number
+	printf("Positive number: ");
+	result = ft_itoa(42);
+	print_test_str(result, "42");
+
+	// Test 3: Negative number
+	printf("Negative number: ");
+	result = ft_itoa(-42);
+	print_test_str(result, "-42");
+
+	// Test 4: INT_MAX
+	printf("INT_MAX: ");
+	result = ft_itoa(INT_MAX);
+	print_test_str(result, "2147483647");
+
+	// Test 5: INT_MIN
+	printf("INT_MIN: ");
+	result = ft_itoa(INT_MIN);
+	print_test_str(result, "-2147483648");
 }
 
 int main(void)
@@ -203,6 +245,7 @@ int main(void)
 	atoi_test();
 	bzero_test();
 	calloc_test();
+	itoa_test();
 
 	printf("\n╔════════════════════════════════════════╗\n");
 	printf("║          TESTING COMPLETE!             ║\n");

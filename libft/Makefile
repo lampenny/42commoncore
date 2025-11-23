@@ -29,6 +29,7 @@ ft_strlcat.c \
 ft_strncmp.c \
 ft_strdup.c \
 ft_substr.c \
+ft_itoa.c
 
 OBJFILES := $(SRCS:.c=.o)
 
