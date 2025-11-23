@@ -229,6 +229,321 @@ void itoa_test()
 	result = ft_itoa(INT_MIN);
 	print_test_str(result, "-2147483648");
 }
+void toupper_test()
+{
+	printf("\n====== Testing ft_toupper ======\n");
+	int a;
+	a = 'a';
+	printf("lowercase a: %c \n", ft_toupper(a));
+}
+
+void tolower_test()
+{
+	printf("\n====== Testing ft_tolower ======\n");
+	int a;
+	int b;
+	a = 'A';
+	b = 'b';
+	printf("uppercase A: %c \n", ft_tolower(a));
+	printf("lowercase b: %c \n", ft_tolower(b));
+}
+void memcpy_test()
+{
+	printf("\n====== Testing ft_memcpy ======\n");
+	int passed = 0;
+	int total = 0;
+	
+	// Test 1: Basic string copy
+	{
+		char source[20] = "Hello";
+		char dest[20] = {0};  // Initialize to zero
+		total++;
+		
+		ft_memcpy(dest, source, 6);  // Copy including null terminator
+		if (strcmp(dest, "Hello") == 0) {
+			printf("✓ Test 1 PASSED: Basic string copy\n");
+			passed++;
+		} else {
+			printf("✗ Test 1 FAILED: Expected 'Hello', got '%s'\n", dest);
+		}
+	}
+	
+	// Test 2: Partial copy
+	{
+		char source[] = "Hello World";
+		char dest[20] = {0};
+		total++;
+		
+		ft_memcpy(dest, source, 5);  // Copy only "Hello"
+		dest[5] = '\0';  // Manually null-terminate
+		if (strcmp(dest, "Hello") == 0) {
+			printf("✓ Test 2 PASSED: Partial copy\n");
+			passed++;
+		} else {
+			printf("✗ Test 2 FAILED: Expected 'Hello', got '%s'\n", dest);
+		}
+	}
+	
+	// Test 3: Copy with binary data (including null bytes)
+	{
+		unsigned char source[] = {1, 2, 0, 3, 4};
+		unsigned char dest[5] = {0};
+		total++;
+		
+		ft_memcpy(dest, source, 5);
+		if (memcmp(dest, source, 5) == 0) {
+			printf("✓ Test 3 PASSED: Binary data with null bytes\n");
+			passed++;
+		} else {
+			printf("✗ Test 3 FAILED: Binary data mismatch\n");
+		}
+	}
+	
+	// Test 4: Copy integers
+	{
+		int source[] = {1, 2, 3, 4, 5};
+		int dest[5] = {0};
+		total++;
+		
+		ft_memcpy(dest, source, sizeof(source));
+		if (memcmp(dest, source, sizeof(source)) == 0) {
+			printf("✓ Test 4 PASSED: Integer array copy\n");
+			passed++;
+		} else {
+			printf("✗ Test 4 FAILED: Integer array mismatch\n");
+		}
+	}
+	
+	// Test 5: Zero-length copy
+	{
+		char source[] = "Hello";
+		char dest[] = "World";
+		total++;
+		
+		ft_memcpy(dest, source, 0);
+		if (strcmp(dest, "World") == 0) {  // dest should be unchanged
+			printf("✓ Test 5 PASSED: Zero-length copy\n");
+			passed++;
+		} else {
+			printf("✗ Test 5 FAILED: Destination was modified\n");
+		}
+	}
+	
+	// Test 6: Compare with standard memcpy
+	{
+		char source[] = "Test string for comparison";
+		char dest1[50] = {0};
+		char dest2[50] = {0};
+		total++;
+		
+		memcpy(dest1, source, sizeof(source));
+		ft_memcpy(dest2, source, sizeof(source));
+		
+		if (memcmp(dest1, dest2, sizeof(source)) == 0) {
+			printf("✓ Test 6 PASSED: Matches standard memcpy behavior\n");
+			passed++;
+		} else {
+			printf("✗ Test 6 FAILED: Does not match standard memcpy\n");
+		}
+	}
+	
+	// Summary
+	printf("\n--- Summary: %d/%d tests passed ---\n", passed, total);
+	if (passed == total) {
+		printf("All tests PASSED! ✓\n");
+	} else {
+		printf("Some tests FAILED ✗\n");
+	}
+}
+
+void strjoin_test()
+{
+	printf("\n====== Testing ft_strjoin ======\n");
+	int passed = 0;
+	int total = 0;
+	char *result;
+	
+	// Test 1: Basic string concatenation
+	{
+		total++;
+		result = ft_strjoin("Hello", " World");
+		if (result && strcmp(result, "Hello World") == 0) {
+			printf("✓ Test 1 PASSED: Basic concatenation\n");
+			passed++;
+		} else {
+			printf("✗ Test 1 FAILED: Expected 'Hello World', got '%s'\n", 
+				result ? result : "NULL");
+		}
+		free(result);
+	}
+	
+	// Test 2: Empty first string
+	{
+		total++;
+		result = ft_strjoin("", "World");
+		if (result && strcmp(result, "World") == 0) {
+			printf("✓ Test 2 PASSED: Empty first string\n");
+			passed++;
+		} else {
+			printf("✗ Test 2 FAILED: Expected 'World', got '%s'\n", 
+				result ? result : "NULL");
+		}
+		free(result);
+	}
+	
+	// Test 3: Empty second string
+	{
+		total++;
+		result = ft_strjoin("Hello", "");
+		if (result && strcmp(result, "Hello") == 0) {
+			printf("✓ Test 3 PASSED: Empty second string\n");
+			passed++;
+		} else {
+			printf("✗ Test 3 FAILED: Expected 'Hello', got '%s'\n", 
+				result ? result : "NULL");
+		}
+		free(result);
+	}
+	
+	// Test 4: Both strings empty
+	{
+		total++;
+		result = ft_strjoin("", "");
+		if (result && strcmp(result, "") == 0) {
+			printf("✓ Test 4 PASSED: Both strings empty\n");
+			passed++;
+		} else {
+			printf("✗ Test 4 FAILED: Expected '', got '%s'\n", 
+				result ? result : "NULL");
+		}
+		free(result);
+	}
+	
+	// Test 5: Long strings
+	{
+		total++;
+		char *long1 = "This is a very long string that should be concatenated";
+		char *long2 = " with another long string to test memory allocation";
+		char *expected = "This is a very long string that should be concatenated"
+						" with another long string to test memory allocation";
+		result = ft_strjoin(long1, long2);
+		if (result && strcmp(result, expected) == 0) {
+			printf("✓ Test 5 PASSED: Long strings\n");
+			passed++;
+		} else {
+			printf("✗ Test 5 FAILED: Long string concatenation failed\n");
+		}
+		free(result);
+	}
+	
+	// Test 6: Single character strings
+	{
+		total++;
+		result = ft_strjoin("A", "B");
+		if (result && strcmp(result, "AB") == 0) {
+			printf("✓ Test 6 PASSED: Single character strings\n");
+			passed++;
+		} else {
+			printf("✗ Test 6 FAILED: Expected 'AB', got '%s'\n", 
+				result ? result : "NULL");
+		}
+		free(result);
+	}
+	
+	// Test 7: Strings with special characters
+	{
+		total++;
+		result = ft_strjoin("Hello\n", "\tWorld!");
+		if (result && strcmp(result, "Hello\n\tWorld!") == 0) {
+			printf("✓ Test 7 PASSED: Special characters\n");
+			passed++;
+		} else {
+			printf("✗ Test 7 FAILED: Special characters not handled correctly\n");
+		}
+		free(result);
+	}
+	
+	// Test 8: Strings with numbers
+	{
+		total++;
+		result = ft_strjoin("42", "24");
+		if (result && strcmp(result, "4224") == 0) {
+			printf("✓ Test 8 PASSED: Numeric strings\n");
+			passed++;
+		} else {
+			printf("✗ Test 8 FAILED: Expected '4224', got '%s'\n", 
+				result ? result : "NULL");
+		}
+		free(result);
+	}
+	
+	// Test 9: Memory allocation check (result is unique)
+	{
+		total++;
+		char *s1 = "Hello";
+		char *s2 = "World";
+		result = ft_strjoin(s1, s2);
+		// Verify result is a new allocation (not pointing to s1 or s2)
+		if (result && result != s1 && result != s2) {
+			printf("✓ Test 9 PASSED: Returns new allocated memory\n");
+			passed++;
+		} else {
+			printf("✗ Test 9 FAILED: Should return new allocation\n");
+		}
+		free(result);
+	}
+	
+	// Test 10: Null termination check
+	{
+		total++;
+		result = ft_strjoin("Test", "123");
+		if (result && result[7] == '\0' && strlen(result) == 7) {
+			printf("✓ Test 10 PASSED: Proper null termination\n");
+			passed++;
+		} else {
+			printf("✗ Test 10 FAILED: String not properly null-terminated\n");
+		}
+		free(result);
+	}
+	
+	// Test 11: Strings with spaces
+	{
+		total++;
+		result = ft_strjoin("Hello   ", "   World");
+		if (result && strcmp(result, "Hello      World") == 0) {
+			printf("✓ Test 11 PASSED: Multiple spaces preserved\n");
+			passed++;
+		} else {
+			printf("✗ Test 11 FAILED: Spaces not handled correctly\n");
+		}
+		free(result);
+	}
+	
+	// Test 12: Compare length calculation
+	{
+		total++;
+		char *s1 = "First";
+		char *s2 = "Second";
+		result = ft_strjoin(s1, s2);
+		size_t expected_len = strlen(s1) + strlen(s2);
+		if (result && strlen(result) == expected_len) {
+			printf("✓ Test 12 PASSED: Correct length calculation\n");
+			passed++;
+		} else {
+			printf("✗ Test 12 FAILED: Length is %zu, expected %zu\n", 
+				result ? strlen(result) : 0, expected_len);
+		}
+		free(result);
+	}
+	
+	// Summary
+	printf("\n--- Summary: %d/%d tests passed ---\n", passed, total);
+	if (passed == total) {
+		printf("All tests PASSED! ✓\n");
+	} else {
+		printf("Some tests FAILED ✗\n");
+	}
+}
 
 int main(void)
 {
@@ -242,10 +557,36 @@ int main(void)
 	isascii_test();
 	isalpha_test();
 	isalnum_test();
+	toupper_test();
+	tolower_test();
+	memcpy_test();
 	atoi_test();
 	bzero_test();
 	calloc_test();
+
 	itoa_test();
+	strjoin_test();
+
+	// NOT YET IMPLEMENTED
+	// substr_test();
+	// strrchr_test();
+	// strnstr_test();
+	// strncmp_test();
+	// strlen_test();
+	// strlcpy_test();
+	// strlcat_test();
+	// striteri_test();
+	// strdup_test();
+	// strchr_test();
+
+	// memcmp_test();
+	// memmove_test();
+	// memset_test();
+
+	// putstr_fd_test();
+	// putnbr_fd_test();
+	// putendl_fd_test();
+	// putchar_ft_test();
 
 	printf("\n╔════════════════════════════════════════╗\n");
 	printf("║          TESTING COMPLETE!             ║\n");

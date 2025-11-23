@@ -16,18 +16,3 @@ int	ft_tolower(int c)
 		c += 32;
 	return (c);
 }
-/*
-#include <stdio.h>
-int main(void)
-{
-
-int a;
-int b;
-a = 'A';
-b = 'b';
-printf("%d \n", ft_tolower(a));
-printf("%d", ft_tolower(b));
-
-return 0;
-}
-*/

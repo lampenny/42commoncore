@@ -16,13 +16,3 @@ int	ft_toupper(int c)
 		c -= 32;
 	return (c);
 }
-/*
-#include <stdio.h>
-int main(void)
-{
-int a;
-a = 'A';
-printf("%d",ft_toupper(a));
-return (0);
-}
-*/

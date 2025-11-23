@@ -28,18 +28,3 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
-/*
-#include <stdio.h>
-#include <string.h>
-int main()
-{
-	char source[20] = "Hello";
-	char dest[20];
-
-printf("before memcpy dest= %s\n", dest);
-
-ft_memcpy(dest, source, sizeof(source)); 
-	printf("dest = %s\n", dest);
-	return (0);
-}
-*/
