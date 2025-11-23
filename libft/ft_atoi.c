@@ -34,25 +34,3 @@ int	ft_atoi(const char *nptr)
 	}
 	return (result * sign);
 }
-/*
-#include <stdlib.h>
-#include <stdio.h>
-int	main()
-{
-int val;
-char *str;
-str = "1509.10E";
-val = ft_atoi(str);
-printf("val = %d\n", val); // expected output: 1509
-
- str = "-9885";
-val = ft_atoi(str);
-
-printf("val = %d\n", val); // expected output: -9885
-str = "       -1234ab567";
-val = ft_atoi(str);
-
-printf("val (expected output -1234 = %d\n", val); // expected output: -1234
-return (0);
-}
-*/
