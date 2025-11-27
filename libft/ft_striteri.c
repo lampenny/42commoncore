@@ -1,4 +1,4 @@
-void	ft_striteri(char *str, void (*func)(unsigned int, char*))
+void	ft_striteri(char *str, void (*f)(unsigned int, char*))
 {
 	unsigned int	i;
 
@@ -7,7 +7,7 @@ void	ft_striteri(char *str, void (*func)(unsigned int, char*))
 		return ;
 	while (str[i])
 	{
-		func(i, &str[i]);
+		f(i, &str[i]);
 		i++;
 	}
 }
