@@ -1,6 +1,6 @@
 NAME = libft.a
 AR = ar
-CC := gcc
+CC := cc
 CFLAGS := -Wall -Wextra -Werror
 ARFLAGS := rcs
 
@@ -31,7 +31,8 @@ ft_strdup.c \
 ft_substr.c \
 ft_itoa.c \
 ft_strjoin.c \
-ft_strtrim.c
+ft_strtrim.c \
+ft_split.c
 
 OBJFILES := $(SRCS:.c=.o)
 

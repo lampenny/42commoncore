@@ -14,6 +14,19 @@ static int	is_in_set(const char *set, char c)
 	return (0);
 }
 
+static void	copy_str(char *dest, const char *src, size_t start, size_t len)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < len)
+	{
+		dest[i] = src[start + i];
+		i++;
+	}
+	dest[i] = '\0';
+}
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		start;
@@ -39,7 +52,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	new_str = malloc(trim_len + 1);
 	if (new_str == NULL)
 		return (NULL);
-	ft_strlcpy(new_str, s1 + start, trim_len + 1);
+	copy_str(new_str, s1, start, trim_len);
 	return (new_str);
 }
 

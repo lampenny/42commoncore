@@ -623,6 +623,97 @@ void strtrim_test()
 	result = ft_strtrim(test_string, set);
 	print_test_str(result, "My Name is Penny");
 }
+void print_result_split(char **result)
+{
+	int i = 0;
+	
+	if (!result)
+	{
+		printf("Result is NULL\n");
+		return;
+	}
+	
+	printf("[\n");
+	while (result[i])
+	{
+		printf("  [%d]: \"%s\"\n", i, result[i]);
+		i++;
+	}
+	printf("]\n");
+	printf("Total words: %d\n\n", i);
+}
+
+void free_result(char **result)
+{
+	int i = 0;
+	
+	if (!result)
+		return;
+	
+	while (result[i])
+	{
+		free(result[i]);
+		i++;
+	}
+	free(result);
+}
+
+void split_test(void)
+{
+	char **result;
+	
+	printf("=== TEST 1: Basic split ===\n");
+	result = ft_split("hello world test", ' ');
+	print_result_split(result);
+	free_result(result);
+	
+	printf("=== TEST 2: Multiple delimiters ===\n");
+	result = ft_split("..My name..is..Penny", '.');
+	print_result_split(result);
+	free_result(result);
+	
+	printf("=== TEST 3: Leading delimiters ===\n");
+	result = ft_split("   hello world", ' ');
+	print_result_split(result);
+	free_result(result);
+	
+	printf("=== TEST 4: Trailing delimiters ===\n");
+	result = ft_split("hello world   ", ' ');
+	print_result_split(result);
+	free_result(result);
+	
+	printf("=== TEST 5: Only delimiters ===\n");
+	result = ft_split(".....", '.');
+	print_result_split(result);
+	free_result(result);
+	
+	printf("=== TEST 6: No delimiters ===\n");
+	result = ft_split("hello", ' ');
+	print_result_split(result);
+	free_result(result);
+	
+	printf("=== TEST 7: Empty string ===\n");
+	result = ft_split("", ' ');
+	print_result_split(result);
+	free_result(result);
+	
+	printf("=== TEST 8: Single character ===\n");
+	result = ft_split("a", ' ');
+	print_result_split(result);
+	free_result(result);
+	
+	printf("=== TEST 9: NULL string ===\n");
+	result = ft_split(NULL, ' ');
+	print_result_split(result);
+	free_result(result);
+	
+	printf("=== TEST 10: Complex case ===\n");
+	result = ft_split("one,,two,,,three,,,,four", ',');
+	print_result_split(result);
+	free_result(result);
+	
+	printf("All tests completed!\n");
+}
 
 int main(void)
 {
@@ -646,7 +737,8 @@ int main(void)
 	itoa_test();
 	strjoin_test();
 	strtrim_test();
-
+	split_test();
+	
 	// NOT YET IMPLEMENTED
 	// substr_test();
 	// strrchr_test();
