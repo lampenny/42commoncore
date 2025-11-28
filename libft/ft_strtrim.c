@@ -18,16 +18,12 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	int		start;
 	int		end;
-	int		i;
-	int		j;
 	int		trim_len;
 	char	*new_str;
 
 	start = 0;
 	while (s1[start] && is_in_set(set, s1[start]))
-	{
 		start++;
-	}
 	if (s1[start] == '\0')
 	{
 		new_str = malloc(1 * sizeof(char));
@@ -38,22 +34,12 @@ char	*ft_strtrim(char const *s1, char const *set)
 	}
 	end = ft_strlen(s1) - 1;
 	while (end >= start && is_in_set(set, s1[end]))
-	{
 		end--;
-	}
 	trim_len = (end - start) + 1;
 	new_str = malloc(trim_len + 1);
 	if (new_str == NULL)
 		return (NULL);
-	i = start;
-	j = 0;
-	while (i <= end)
-	{
-		new_str[j] = s1[i];
-		i++;
-		j++;
-	}
-	new_str[j] = '\0';
+	ft_strlcpy(new_str, s1 + start, trim_len + 1);
 	return (new_str);
 }
 
