@@ -626,13 +626,13 @@ void strtrim_test()
 void print_result_split(char **result)
 {
 	int i = 0;
-	
+
 	if (!result)
 	{
 		printf("Result is NULL\n");
 		return;
 	}
-	
+
 	printf("[\n");
 	while (result[i])
 	{
@@ -646,10 +646,10 @@ void print_result_split(char **result)
 void free_result(char **result)
 {
 	int i = 0;
-	
+
 	if (!result)
 		return;
-	
+
 	while (result[i])
 	{
 		free(result[i]);
@@ -661,58 +661,110 @@ void free_result(char **result)
 void split_test(void)
 {
 	char **result;
-	
+	printf("\n====== Testing ft_split ======\n");
 	printf("=== TEST 1: Basic split ===\n");
 	result = ft_split("hello world test", ' ');
 	print_result_split(result);
 	free_result(result);
-	
+
 	printf("=== TEST 2: Multiple delimiters ===\n");
 	result = ft_split("..My name..is..Penny", '.');
 	print_result_split(result);
 	free_result(result);
-	
+
 	printf("=== TEST 3: Leading delimiters ===\n");
 	result = ft_split("   hello world", ' ');
 	print_result_split(result);
 	free_result(result);
-	
+
 	printf("=== TEST 4: Trailing delimiters ===\n");
 	result = ft_split("hello world   ", ' ');
 	print_result_split(result);
 	free_result(result);
-	
+
 	printf("=== TEST 5: Only delimiters ===\n");
 	result = ft_split(".....", '.');
 	print_result_split(result);
 	free_result(result);
-	
+
 	printf("=== TEST 6: No delimiters ===\n");
 	result = ft_split("hello", ' ');
 	print_result_split(result);
 	free_result(result);
-	
+
 	printf("=== TEST 7: Empty string ===\n");
 	result = ft_split("", ' ');
 	print_result_split(result);
 	free_result(result);
-	
+
 	printf("=== TEST 8: Single character ===\n");
 	result = ft_split("a", ' ');
 	print_result_split(result);
 	free_result(result);
-	
+
 	printf("=== TEST 9: NULL string ===\n");
 	result = ft_split(NULL, ' ');
 	print_result_split(result);
 	free_result(result);
-	
+
 	printf("=== TEST 10: Complex case ===\n");
 	result = ft_split("one,,two,,,three,,,,four", ',');
 	print_result_split(result);
 	free_result(result);
-	
+
 	printf("All tests completed!\n");
+}
+
+void memcmp_test()
+{
+	char s1[] = "hello";
+	char s2[] = "hello";
+	char s3[] = "hellx";
+
+	printf("\n====== Testing ft_memcmp ======\n");
+
+	printf("equal: %d\n", ft_memcmp(s1, s2, 5));
+	printf("should be 0\n");
+
+	// Test different strings
+	printf("diff: %d\n", ft_memcmp(s1, s3, 5));
+	printf("should be negative (o < x)\n");
+
+	// Test with n = 0
+	printf("n=0: %d\n", ft_memcmp(s1, s3, 0));
+	printf("should be 0\n");
+
+	// Test partial compare
+	printf("partial: %d\n", ft_memcmp(s1, s3, 4));
+	printf("should be 0 (first 4 match)\n");
+}
+
+void memmove_test()
+{
+	printf("\n====== Testing ft_memmove ======\n");
+	// Test 1: simple copy
+	char s1[] = "hello";
+	char s2[10];
+	ft_memmove(s2, s1, 6);
+	printf("simple: %s\n", s2); // should print "hello"
+
+	// Test 2: overlapping memory
+	char s3[] = "hello";
+	ft_memmove(s3 + 1, s3, 4);
+	printf("overlap: %s\n", s3); // should print "hhell"
+}
+
+void memset_test()
+{
+	printf("\n====== Testing ft_memset ======\n");
+	char str[50] = "Penny penny penny penny penny penny";
+	printf("before ft_memset() %s\n", str);
+
+	// Fill 6 characters starting from str[11] with '*'
+	printf("call ft_memset and fill 6 characters starting from str[11] with '*' \n");
+	ft_memset(str + 11, '*', 6);
+
+	printf("after ft_memset() %s \n", str);
 }
 
 int main(void)
@@ -738,7 +790,13 @@ int main(void)
 	strjoin_test();
 	strtrim_test();
 	split_test();
-	
+
+	memcmp_test();
+	memmove_test();
+	memset_test();
+
+	// striteri_test();
+
 	// NOT YET IMPLEMENTED
 	// substr_test();
 	// strrchr_test();
@@ -750,10 +808,6 @@ int main(void)
 	// striteri_test();
 	// strdup_test();
 	// strchr_test();
-
-	// memcmp_test();
-	// memmove_test();
-	// memset_test();
 
 	// putstr_fd_test();
 	// putnbr_fd_test();

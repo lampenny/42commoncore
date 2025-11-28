@@ -25,3 +25,9 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	return (NULL);
 }
+
+/*
+returns a pointer to the
+located character or NULL if the
+character does not appear in the string.
+*/

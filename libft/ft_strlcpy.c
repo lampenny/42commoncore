@@ -30,3 +30,9 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 		i++;
 	return (i);
 }
+
+/*
+copy and concats strings
+returning the total length of
+the string they tried to create.
+*/

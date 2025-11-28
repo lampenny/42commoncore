@@ -17,6 +17,7 @@ ft_isprint.c \
 ft_memcpy.c \
 ft_memset.c \
 ft_memcmp.c \
+ft_memmove.c \
 ft_putchar_fd.c \
 ft_putendl_fd.c \
 ft_putnbr_fd.c \
@@ -32,7 +33,11 @@ ft_substr.c \
 ft_itoa.c \
 ft_strjoin.c \
 ft_strtrim.c \
-ft_split.c
+ft_split.c \
+ft_striteri.c \
+ft_strmapi.c \
+ft_strnstr.c \
+ft_memchr.c 
 
 OBJFILES := $(SRCS:.c=.o)
 
