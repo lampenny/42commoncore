@@ -8,6 +8,13 @@ int main()
 	short int	j = 17;
 	unsigned int	u = 0xf179U;
 
+	printf("\n Integers \n");
+	printf("%i %o %x %u\n", i, i, i, i);
+	// i - decimal
+	// o - octal
+	// x - hexadecimal
+	// u - unsigned
+
 	printf("\n Characters: \n");
 	printf("%c\n", c);
 	printf("%3c%3c\n", c, c);
