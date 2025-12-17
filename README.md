@@ -10,3 +10,12 @@
     
     4. First Real-World Coding Projects
 
+## Core Programming: Expand Your Skills
+
+    1. Advanced C & C++ Programming
+
+    2. Data Structures and Algorithms
+
+    3. Software Development Best Practices
+
+    4. Team Collaboration on Coding Projects

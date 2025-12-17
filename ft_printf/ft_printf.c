@@ -10,62 +10,49 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdarg.h>
-#include <stdio.h>
+#include "ft_printf.h"
 
-int	ft_putchar(char c)
+int is_valid_format(char c)
 {
-	return (write(1, &c, 1));
+	return (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == '%');
 }
 
-int	ft_putstr(char *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i])
-	{
-		ft_putchar(s[i]);
-		i++;
-	}
-	return (i);
-}
-
-int	is_valid_format(char c)
-{
-	return (c == 'c' || c == 's' || c == 'p'
-		|| c == 'd' || c == 'i' || c == 'u'
-		|| c == 'x' || c == 'X' || c == '%');
-}
-
-int	handle_format(char specifier, va_list *args)
+int handle_format(char specifier, va_list *args)
 {
 	if (specifier == 'c')
 		return (ft_putchar(va_arg(*args, int)));
 	if (specifier == 's')
 		return (ft_putstr(va_arg(*args, char *)));
+	// if (specifier == 'd' || specifier == 'i')
+	// 	return (ft_putint(va_arg(*args, int)));
+	// if (specifier == 'u')
+	// 	return (ft_putuint(va_arg(*args, unsigned int)));
+	// if (specifier == 'x' || specifier == 'X')
+	// 	return (ft_puthex(va_arg(*args, unsigned int)));
+	// if (specifier == 'p')
+	// 	return (ft_putptr(va_arg(*args, void *)));
+	// if (specifier == '%')
+	// 	return ('%');
 	return (0);
 }
 
-int	ft_printf(const char *format, ...)
+int ft_printf(const char *format, ...)
 {
-	va_list		args;
-	int	count;
-	int	i;
-	int	printed;
+	va_list args;
+	int count;
+	int i;
+	int printed;
 
 	printed = 0;
 	i = 0;
 	va_start(args, format);
 	count = 0;
-
 	while (format[i])
 	{
 		if (format[i] == '%' && is_valid_format(format[i + 1]))
 		{
 			i++;
-			printed = handle_format(format[i],  &args);
+			printed = handle_format(format[i], &args);
 			count += printed;
 		}
 		else
@@ -77,13 +64,4 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(args);
 	return (count);
-}
-
-int	main(void)
-{
-	char	*str = "this is my string";
-
-	ft_printf("my printf - char: %c\n", 'A');
-	ft_printf("my printf - str: %s\n", str);
-	return (0);
 }
