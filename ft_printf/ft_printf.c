@@ -39,12 +39,12 @@ int	is_valid_format(char c)
 		|| c == 'x' || c == 'X' || c == '%');
 }
 
-int	handle_format(char specifier, va_list args)
+int	handle_format(char specifier, va_list *args)
 {
 	if (specifier == 'c')
-		return (ft_putchar(args));
+		return (ft_putchar(va_arg(*args, int)));
 	if (specifier == 's')
-		return (ft_putstr(args));
+		return (ft_putstr(va_arg(*args, char *)));
 	return (0);
 }
 
@@ -65,7 +65,7 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%' && is_valid_format(format[i + 1]))
 		{
 			i++;
-			printed = handle_format(format[i], args);
+			printed = handle_format(format[i],  &args);
 			count += printed;
 		}
 		else
