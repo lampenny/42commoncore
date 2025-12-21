@@ -11,8 +11,6 @@
 # **************************************************************************** #
 
 NAME = libftprintf.a
-LIBFT_NAME = libft.a
-LIBFT_DIR = ./libft
 AR = ar
 CC := cc
 CFLAGS := -Wall -Wextra -Werror
@@ -21,29 +19,26 @@ ARFLAGS := rcs
 SRCS := ft_printf.c \
 ft_putchar.c \
 ft_putstr.c \
-ft_putint.c
+ft_putnbr.c \
+ft_putuint.c \
+ft_putptr.c \
+ft_puthex.c
 
 OBJFILES := $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): makelibft $(OBJFILES)
+$(NAME): $(OBJFILES)
 	$(AR) $(ARFLAGS) $(NAME) $(OBJFILES)
-
-makelibft:
-	make -C $(LIBFT_DIR)
-	cp $(LIBFT_DIR)/$(LIBFT_NAME) $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJFILES)
-	make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 

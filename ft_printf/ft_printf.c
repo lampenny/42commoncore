@@ -12,36 +12,38 @@
 
 #include "ft_printf.h"
 
-int is_valid_format(char c)
+int	is_valid_format(char c)
 {
-	return (c == 'c' || c == 's' || c == 'p' || c == 'd' || c == 'i' || c == 'u' || c == 'x' || c == 'X' || c == '%');
+	return (c == 'c' || c == 's' || c == 'p' || c == 'd'
+		|| c == 'i' || c == 'u' || c == 'x'
+		|| c == 'X' || c == '%');
 }
 
-int handle_format(char specifier, va_list *args)
+int	handle_format(char specifier, va_list *args)
 {
 	if (specifier == 'c')
 		return (ft_putchar(va_arg(*args, int)));
 	if (specifier == 's')
 		return (ft_putstr(va_arg(*args, char *)));
-	// if (specifier == 'd' || specifier == 'i')
-	// 	return (ft_putint(va_arg(*args, int)));
-	// if (specifier == 'u')
-	// 	return (ft_putuint(va_arg(*args, unsigned int)));
-	// if (specifier == 'x' || specifier == 'X')
-	// 	return (ft_puthex(va_arg(*args, unsigned int)));
-	// if (specifier == 'p')
-	// 	return (ft_putptr(va_arg(*args, void *)));
-	// if (specifier == '%')
-	// 	return ('%');
+	if (specifier == 'd' || specifier == 'i')
+		return (ft_putnbr(va_arg(*args, int)));
+	if (specifier == 'u')
+		return (ft_putuint(va_arg(*args, unsigned int)));
+	if (specifier == 'x' || specifier == 'X')
+		return (ft_puthex(va_arg(*args, unsigned int), specifier));
+	if (specifier == 'p')
+		return (ft_putptr(va_arg(*args, void *)));
+	if (specifier == '%')
+		return (ft_putchar('%'));
 	return (0);
 }
 
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
-	va_list args;
-	int count;
-	int i;
-	int printed;
+	va_list		args;
+	int			count;
+	int			i;
+	int			printed;
 
 	printed = 0;
 	i = 0;
