@@ -6,7 +6,7 @@
 /*   By: penlam <penlam@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 10:14:29 by penlam            #+#    #+#             */
-/*   Updated: 2025/11/16 16:56:54 by penlam           ###   ########.fr       */
+/*   Updated: 2025/11/29 11:24:46 by penlam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,23 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	i;
 	size_t	j;
 
+	if (!big && len == 0)
+		return (NULL);
 	i = 0;
-	j = 0;
 	if (!*little)
 		return ((char *)big);
-	while (big[i] != '\0' && i < len)
+	while (big[i] && i < len)
 	{
-		while (little[j] != '\0' && big[i + j] == little[j] && i + j < len)
-			j++;
-		if (little[j] == '\0')
-			return ((char *)&big[i]);
 		j = 0;
+		while (little[j] && big[i + j] == little[j] && i + j < len)
+			j++;
+		if (!little[j])
+			return ((char *)&big[i]);
 		i++;
 	}
 	return (NULL);
 }
+
+/*
+needle in the haystack
+*/

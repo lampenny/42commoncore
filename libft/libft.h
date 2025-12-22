@@ -6,7 +6,7 @@
 /*   By: penlam <penlam@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 15:36:51 by penlam            #+#    #+#             */
-/*   Updated: 2025/11/16 20:00:11 by penlam           ###   ########.fr       */
+/*   Updated: 2025/11/29 10:20:59 by penlam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
 
 int		ft_strlen(const char *str);
 int		ft_isalpha(int c);
