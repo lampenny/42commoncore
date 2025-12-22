@@ -6,7 +6,7 @@
 #    By: penlam <penlam@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/11/30 17:53:18 by penlam            #+#    #+#              #
-#    Updated: 2025/11/30 18:56:55 by penlam           ###   ########.fr        #
+#    Updated: 2025/12/22 13:28:37 by penlam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,4 +42,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re makelibft
+.PHONY: all clean fclean re

@@ -37,12 +37,22 @@ https://www.geeksforgeeks.org/c/variadic-functions-in-c/
 
 http://ld2015.scusa.lsu.edu/cppreference/en/cpp/utility/variadic/va_list.html#:~:text=If%20a%20va_list%20instance%20is,object%20after%20the%20function%20returns.
 
-https://www.gnu.org/software/make/manual/html_node/Recursion.html
+https://www.gnu.org/software/make/manual/make.html
+
+https://www.cs.yale.edu/homes/aspnes/pinewiki/C%282f%29Pointers.html 
+
+https://pythontutor.com/visualize.html
+
+https://www.geeksforgeeks.org/c/c-pointers/
+
+https://www.gnu.org/software/c-intro-and-ref/manual/html_node/Printing-Pointers.html
 
 #### How AI was used
 
-AI was used to help me explain new concepts like the point of hexadecimals and variadic functions and how va_list works. For this project I tried to research on my own first before using AI as a last resort. I also asked AI to check my code for errors or any gotchas that I might have overlooked.
+AI was used to help me explain new concepts such as the point of hexadecimals and variadic functions and how va_list works. I also asked AI to check my code for errors or any gotchas that I might have overlooked.
 
 ### Explanation and justification of chosen implementation
 
-I recreated a very simplified version of the standard C printf as per the subject instructions. It parses a format string, identifies format specifiers and outputs the corresponding args to standard output. The core logic of the function is inside `ft_printf.c` where it has the `ft_printf`, `handle_format` and `is_valid_format`. For the helper functions, I originally wanted to use my libft however, it would have meant a bit of refactoring which had the equivalent effort to rewriting `putchar`, `putstr` and `putnbr`. 
+I recreated a very simplified version of the standard C printf as per the subject instructions. It parses a format string, identifies format specifiers and outputs the corresponding args to standard output. The core logic of the function is inside `ft_printf.c` where it has the `ft_printf`, `handle_format` and `is_valid_format`. For the helper functions, I originally wanted to use my libft however, it would have meant a bit of refactoring which had the equivalent effort to rewriting `putchar`, `putstr` and `putnbr`.
+
+

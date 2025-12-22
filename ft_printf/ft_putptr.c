@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: penlam <penlam@student.42london.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/22 12:39:03 by penlam            #+#    #+#             */
+/*   Updated: 2025/12/22 14:49:43 by penlam           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	ft_putptr(void *ptr)
 {
 	unsigned long	address;
-	char			buffer[17];
+	char			buffer[16];
 	char			*hex;
 	int				i;
 	int				count;
 
 	if (ptr == NULL)
-		return (ft_putstr("0x0"));
+		return (ft_putstr("(nil)"));
 	address = (unsigned long)ptr;
 	i = 0;
 	hex = "0123456789abcdef";

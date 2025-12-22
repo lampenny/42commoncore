@@ -6,7 +6,7 @@
 /*   By: penlam <penlam@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 18:15:41 by penlam            #+#    #+#             */
-/*   Updated: 2025/11/30 19:15:46 by penlam           ###   ########.fr       */
+/*   Updated: 2025/12/22 15:18:35 by penlam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,21 @@ int	handle_format(char specifier, va_list *args)
 int	ft_printf(const char *format, ...)
 {
 	va_list		args;
-	int			count;
 	int			i;
-	int			printed;
+	int			count;
 
-	printed = 0;
 	i = 0;
-	va_start(args, format);
 	count = 0;
+	va_start(args, format);
 	while (format[i])
 	{
 		if (format[i] == '%' && is_valid_format(format[i + 1]))
 		{
 			i++;
-			printed = handle_format(format[i], &args);
-			count += printed;
+			count += handle_format(format[i], &args);
 		}
 		else
-		{
-			printed = ft_putchar(format[i]);
-			count += printed;
-		}
+			count += ft_putchar(format[i]);
 		i++;
 	}
 	va_end(args);
