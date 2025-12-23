@@ -14,15 +14,21 @@
 
 int	ft_putstr(char *str)
 {
-	int	i;
+	int	len;
 
-	i = 0;
 	if (!str)
-		return (write(1, "(null)", 6));
-	while (str[i])
 	{
-		write(1, str[i], 1);
-		i++;
+		if (write(1, "(null)", 6) == -1)
+			return (-1);
+		return (6);
 	}
-	return (i);
+	len = 0;
+	while (*str != '\0')
+	{
+		if (write(1, str, 1) == -1)
+			return (-1);
+		len++;
+		str++;
+	}
+	return (len);
 }

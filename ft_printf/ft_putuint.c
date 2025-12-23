@@ -15,10 +15,14 @@
 int	ft_putuint(unsigned int nb)
 {
 	int	count;
+	int	res;
 
 	count = 0;
 	if (nb >= 10)
 		count += ft_putuint(nb / 10);
-	count += ft_putchar((nb % 10) + '0');
+	res = ft_putchar((nb % 10) + '0');
+	if (res == -1)
+		return (-1);
+	count += res;
 	return (count);
 }

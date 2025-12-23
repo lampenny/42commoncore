@@ -15,17 +15,27 @@
 int	ft_putnbr(int n)
 {
 	long	nb;
-	int		count;
+	int		len;
+	int		res;
 
 	nb = n;
-	count = 0;
+	len = 0;
 	if (nb < 0)
 	{
-		count += ft_putchar('-');
+		if (ft_putchar('-') == -1)
+			return (-1);
+		len++;
 		nb = -nb;
 	}
-	if (nb >= 10)
-		count += ft_putnbr(nb / 10);
-	count += ft_putchar((nb % 10) + '0');
-	return (count);
+	if (nb > 9)
+	{
+		res = ft_putnbr(nb / 10);
+		if (res == -1)
+			return (-1);
+		len += res;
+	}
+	if (ft_putchar((nb % 10) + '0') == -1)
+		return (-1);
+	len++;
+	return (len);
 }
