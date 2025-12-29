@@ -6,7 +6,7 @@
 /*   By: penlam <penlam@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 11:04:25 by penlam            #+#    #+#             */
-/*   Updated: 2025/12/22 19:02:25 by penlam           ###   ########.fr       */
+/*   Updated: 2025/12/29 15:32:19 by penlam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,9 @@ int	ft_putstr(char *str)
 		return (6);
 	}
 	len = 0;
-	while (*str != '\0')
-	{
-		if (write(1, str, 1) == -1)
-			return (-1);
+	while (str[len])
 		len++;
-		str++;
-	}
+	if (write(1, str, len) == -1)
+		return (-1);
 	return (len);
 }

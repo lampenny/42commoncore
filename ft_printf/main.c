@@ -63,11 +63,18 @@ int	main(void)
 // 	printf("sys printf, null pointer: %p \n", NULL);
 // 	ft_printf("my printf, null pointer: %p \n", NULL);
 
-	printf(" %p %p ", (void *)0, (void *)0);
-	printf("/n");
-	ft_printf(" %p %p ", (void *)0, (void *)0);
-	printf("/n");
+//	printf(" %p %p ", (void *)0, (void *)0);
+//	printf("/n");
+//	ft_printf(" %p %p ", (void *)0, (void *)0);
+//	printf("/n");
 
+// printf("[%d]\n", printf("%s", ""));
+// printf("[%d]\n", ft_printf("%s", ""));
+
+ft_printf("test%");        // should print: test%
+ft_printf("test%z", 42);   // should print: test%z (doesn't consume arg)
+ft_printf("%%%");          // should print: %%
+ft_printf("%");            // should print: %
 	// printf("sys printf, long max: %p \n", (void *)LONG_MAX);
 	// ft_printf("my printf, long max: %p \n", (void *)LONG_MAX);
 
